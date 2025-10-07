@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mockup — Recharge (TEST)</title>
+  <style>
+    /* THËNIE E RËNDËSISHME: ky është vetëm mockup testimi - mos e përdor për pagesa reale */
+    :root {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body {
+      margin:0;
+      background:#fff;
+      color:#111;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      min-height:100vh;
+      padding:40px 16px;
+    }
+    .card {
+      width:360px;
+      border:1px solid #e6e6e6;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.06);
+      overflow:hidden;
+    }
+    .header {
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:14px 16px;
+      border-bottom:1px solid #f0f0f0;
+      background:linear-gradient(90deg,#fff,#fff);
+    }
+    .logo {
+      width:40px;
+      height:auto;
+      display:block;
+    }
+    .brand-title {
+      font-weight:700;
+      font-size:18px;
+    }
+    .body {
+      padding:18px;
+    }
+    .field {
+      margin-bottom:12px;
+    }
+    label { display:block; font-size:13px; margin-bottom:6px; color:#666; }
+    input[type="text"] {
+      width:100%;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #ddd;
+      outline:none;
+      box-sizing:border-box;
+      font-size:15px;
+    }
+    .coins {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin:12px 0 18px;
+    }
+    .coins select {
+      flex:1;
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #ddd;
+      font-size:15px;
+    }
+    .btn {
+      display:block;
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      background:#fe2c55; /* TikTok-ish red/pink accent (visual only) */
+      color:white;
+      border:0;
+      font-weight:700;
+      cursor:pointer;
+      font-size:15px;
+    }
+    .note {
+      margin-top:12px;
+      font-size:13px;
+      color:#777;
+    }
+    .success {
+      display:none;
+      margin-top:14px;
+      padding:10px 12px;
+      border-radius:8px;
+      background:#e6ffef;
+      color:#1b7a4a;
+      border:1px solid #c9f0da;
+      font-weight:600;
+    }
+    .disclaimer {
+      font-size:12px;
+      color:#a00;
+      padding:10px 12px;
+      background:#fff6f6;
+      border-top:1px solid #ffecec;
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="main">
+    <div class="header">
+      <!-- Vendos ketu imazhin: assets/tiktok-logo.png -->
+      <img src="assets/tiktok-logo.png" alt="TikTok logo" class="logo" />
+      <div>
+        <div class="brand-title">TikTok — Recharge (TEST)</div>
+        <div style="font-size:12px;color:#888">Mockup privat, jo shërbim real</div>
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="field">
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="@emri" value="" />
+      </div>
+
+      <div class="field">
+        <label for="package">Zgjidh paketën</label>
+        <div class="coins">
+          <select id="package">
+            <option value="50">50 coins — €0.99 (t)</option>
+            <option value="200">200 coins — €3.99 (t)</option>
+            <option value="500">500 coins — €8.99 (t)</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="rechargeBtn" class="btn">Recharge — Simulo</button>
+
+      <div id="success" class="success" role="status" aria-live="polite"></div>
+
+      <div class="note">1.</div>
+    </div>
+
+    <div class="disclaimer">
+      <strong>Disclaimer:</strong> Ky skenar përdor një imazh me emrin <code>tiktok-logo.png</code> vetëm për test. Mos e publikoni si shërbim real ose nën markën e TikTok pa leje.
+    </div>
+  </div>
+
+  <script>
+    // Vetëm prezentim/simulim (client-side)
+    const btn = document.getElementById('rechargeBtn');
+    const username = document.getElementById('username');
+    const pkg = document.getElementById('package');
+    const success = document.getElementById('success');
+
+    btn.addEventListener('click', () => {
+      const user = username.value.trim();
+      const pack = pkg.options[pkg.selectedIndex].text;
+
+      if (!user) {
+        success.style.display = 'block';
+        success.style.background = '#fff6f6';
+        success.style.color = '#a00';
+        success.textContent = 'Shkruaj username (p.sh. @emri) për të simuluar.';
+        return;
+      }
+
+      // Simulim i suksesshëm
+      success.style.display = 'block';
+      success.style.background = '#e6ffef';
+      success.style.color = '#1b7a4a';
+      success.textContent = `SUCCESS: ${pack} u "shtuan" tek ${user} (mockup).`;
+    });
+  </script>
+</body>
+</html>
